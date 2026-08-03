@@ -59,3 +59,8 @@ export function archiveTask(id: number, database: DatabaseType = db): void {
   const statement = database.prepare(`UPDATE tasks SET is_archived = 1 WHERE id = ?`);
   statement.run(id);
 }
+
+export function unarchiveTask(id: number, database: DatabaseType = db): void {
+  const statement = database.prepare(`UPDATE tasks SET is_archived = 0 WHERE id = ?`);
+  statement.run(id);
+}

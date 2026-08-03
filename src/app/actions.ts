@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { createTask, updateTask, archiveTask } from "../../db/tasks";
+import { createTask, updateTask, archiveTask, unarchiveTask } from "../../db/tasks";
 import type { TaskInput } from "@/types/task";
 
 export async function createTaskAction(formData: FormData) {
@@ -40,5 +40,14 @@ export async function archiveTaskAction(formData: FormData) {
   if (Number.isNaN(taskId)) return;
 
   archiveTask(taskId);
+  revalidatePath("/");
+}
+
+export async function unarchiveTaskAction(formData: FormData) {
+  const idValue = String(formData.get("id") ?? "");
+  const taskId = Number(idValue);
+  if (Number.isNaN(taskId)) return;
+
+  unarchiveTask(taskId);
   revalidatePath("/");
 }

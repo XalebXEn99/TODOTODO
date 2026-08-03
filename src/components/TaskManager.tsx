@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import type { Task } from "@/types/task";
 import { TaskForm } from "@/components/TaskForm";
 import { TaskList } from "@/components/TaskList";
-import { createTaskAction, updateTaskAction, archiveTaskAction } from "@/app/actions";
+import { createTaskAction, updateTaskAction, archiveTaskAction, unarchiveTaskAction } from "@/app/actions";
 
 interface TaskManagerProps {
   tasks: Task[];
@@ -18,6 +18,8 @@ export function TaskManager({ tasks, archivedTasks }: TaskManagerProps) {
 
   const activeTasks = useMemo(() => tasks, [tasks]);
   const archived = useMemo(() => archivedTasks, [archivedTasks]);
+  const allTasks = useMemo(() => [...tasks, ...archivedTasks], [tasks, archivedTasks]);
+  const existingTopics = useMemo(() => Array.from(new Set(allTasks.map((task) => task.topic.trim()).filter(Boolean))), [allTasks]);
 
   const openNewTaskForm = () => {
     setEditingTask(undefined);
@@ -102,6 +104,12 @@ export function TaskManager({ tasks, archivedTasks }: TaskManagerProps) {
                   </div>
                   <p className="mt-4 text-sm leading-6 text-zinc-700">{task.description}</p>
                   <p className="mt-4 text-sm text-zinc-600">Due date: <strong className="text-zinc-950">{task.due_date}</strong></p>
+                  <form action={unarchiveTaskAction} className="mt-4 inline-block">
+                    <input type="hidden" name="id" value={task.id} />
+                    <button type="submit" className="rounded-full bg-emerald-600 px-3 py-1 text-xs font-semibold text-white hover:bg-emerald-700">
+                      Unarchive
+                    </button>
+                  </form>
                 </article>
               ))}
             </div>
@@ -112,6 +120,8 @@ export function TaskManager({ tasks, archivedTasks }: TaskManagerProps) {
       {isFormOpen ? (
         <TaskForm
           task={editingTask}
+          existingTasks={allTasks}
+          existingTopics={existingTopics}
           onClose={closeForm}
           action={editingTask ? updateTaskAction : createTaskAction}
         />

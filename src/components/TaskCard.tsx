@@ -44,7 +44,7 @@ export function TaskCard({ task, onEdit, archiveAction }: TaskCardProps) {
           Due <strong className="text-zinc-950">{task.due_date}</strong>
         </p>
         <div className="flex items-center gap-2">
-          <form action={archiveAction} method="post" className="inline">
+          <form action={archiveAction} className="inline">
             <input type="hidden" name="id" value={task.id} />
             <button type="submit" className="rounded-full border border-zinc-200 bg-zinc-50 px-3 py-1 text-xs font-semibold text-zinc-700 transition hover:bg-zinc-100">
               Archive
