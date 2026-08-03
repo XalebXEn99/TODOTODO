@@ -2,20 +2,23 @@
 
 ## ERD for the tasks table
 
+For this lab, the ERD is intentionally simple because the app uses a single SQLite table: `tasks`.
+There are no relationships to other tables, so the correct ERD is a single entity with its columns and constraints.
+
 ```mermaid
 erDiagram
     TASKS {
         int id PK
-        string title
-        string description
-        string due_date
-        string topic
-        string status
-        int is_archived
-        string created_at
+        string title "NOT NULL"
+        string description "NOT NULL"
+        string due_date "NOT NULL"
+        string topic "NOT NULL"
+        string status "CHECK IN ('Todo','In-Progress','Complete')"
+        int is_archived "NOT NULL DEFAULT 0"
+        string created_at "DEFAULT CURRENT_TIMESTAMP"
     }
 ```
-![alt text](db-diagram.png)
+![ERDiagram](db-diagram-dark.png)
 
 ## How to draw this ERD
 
@@ -25,15 +28,4 @@ erDiagram
 3. Click the "Generate Diagram" or "Render" button.
 4. Export the diagram as SVG or PNG if needed.
 
-### Option 2: Draw.io
-1. Open Draw.io and create a new blank diagram.
-2. Add an Entity shape for the `tasks` table.
-3. Add attributes inside the entity: `id`, `title`, `description`, `due_date`, `topic`, `status`, `is_archived`, and `created_at`.
-4. Label the entity as `TASKS` and group the properties in a simple table-style layout.
-5. Save the diagram as a Draw.io file or export it as an image.
 
-### Option 3: Mermaid in VS Code
-1. Install the Mermaid Markdown Preview or Markdown Preview Enhanced extension in VS Code.
-2. Open this markdown file.
-3. Open the preview pane to render the Mermaid diagram.
-4. Use the preview to review or export the ERD.
