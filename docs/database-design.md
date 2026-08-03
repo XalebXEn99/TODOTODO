@@ -18,11 +18,8 @@ erDiagram
         string created_at "DEFAULT CURRENT_TIMESTAMP"
     }
 ```
-![ERDiagram](db-diagram-dark.png)
 
-## How to draw this ERD
-
-### Option 1: Mermaid Live Editor
+### Mermaid Live Editor
 1. Open https://mermaid.live/ in your browser.
 2. Paste the Mermaid code block above into the editor.
 3. Click the "Generate Diagram" or "Render" button.
