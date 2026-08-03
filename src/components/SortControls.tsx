@@ -24,8 +24,8 @@ export function SortControls({ activeSort, onChange }: SortControlsProps) {
           onClick={() => onChange(option.key)}
           className={`rounded-full border px-4 py-2 text-sm transition ${
             option.key === activeSort
-              ? "border-sky-600 bg-sky-600 text-white"
-              : "border-zinc-200 bg-white text-zinc-700 hover:border-sky-500 hover:bg-sky-50"
+              ? "border-pink-500 bg-pink-600 text-white"
+              : "border-zinc-200 bg-white text-zinc-700 hover:border-pink-400 hover:bg-pink-50"
           }`}
         >
           {option.label}

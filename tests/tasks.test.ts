@@ -41,7 +41,7 @@ describe("Todo app database behavior", () => {
     });
   });
 
-  test("archives a task so it leaves active tasks and appears in archived tasks", () => {
+  test("archives a task so it leaves active tasks, appears in archived tasks, and remains stored in SQLite", () => {
     const db = createTestDatabase();
     const taskData: TaskInput = {
       title: "Submit assignment",
@@ -56,11 +56,15 @@ describe("Todo app database behavior", () => {
 
     const activeTasks = getAllTasks(db);
     const archivedTasks = getArchivedTasks(db);
+    const persistedRow = db.prepare("SELECT id, is_archived FROM tasks WHERE id = ?").get(id) as { id: number; is_archived: number } | undefined;
 
     expect(activeTasks).toHaveLength(0);
     expect(archivedTasks).toHaveLength(1);
     expect(archivedTasks[0].id).toBe(id);
     expect(archivedTasks[0].is_archived).toBe(1);
+    expect(persistedRow).toBeDefined();
+    expect(persistedRow?.id).toBe(id);
+    expect(persistedRow?.is_archived).toBe(1);
   });
 
   test("derives overdue only for incomplete tasks and not for completed tasks", () => {

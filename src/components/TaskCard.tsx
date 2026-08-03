@@ -10,9 +10,9 @@ interface TaskCardProps {
 }
 
 const statusColors: Record<string, string> = {
-  Todo: "bg-amber-100 text-amber-800",
-  "In-Progress": "bg-sky-100 text-sky-800",
-  Complete: "bg-emerald-100 text-emerald-800",
+  Todo: "bg-pink-100 text-pink-700",
+  "In-Progress": "bg-pink-200 text-pink-800",
+  Complete: "bg-pink-300 text-pink-900",
 };
 
 export function TaskCard({ task, onEdit, archiveAction }: TaskCardProps) {
@@ -30,7 +30,7 @@ export function TaskCard({ task, onEdit, archiveAction }: TaskCardProps) {
             {task.status}
           </span>
           {overdue ? (
-            <span className="rounded-full bg-red-100 px-3 py-1 text-xs font-semibold text-red-800">
+            <span className="rounded-full bg-pink-300 px-3 py-1 text-xs font-semibold text-pink-950">
               Overdue
             </span>
           ) : null}
@@ -50,7 +50,7 @@ export function TaskCard({ task, onEdit, archiveAction }: TaskCardProps) {
               Archive
             </button>
           </form>
-          <button onClick={() => onEdit(task)} className="rounded-full bg-sky-600 px-3 py-1 text-xs font-semibold text-white hover:bg-sky-700">
+          <button onClick={() => onEdit(task)} className="rounded-full bg-black px-3 py-1 text-xs font-semibold text-white hover:bg-pink-600">
             Edit
           </button>
         </div>

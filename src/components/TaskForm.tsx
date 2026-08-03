@@ -115,16 +115,16 @@ export function TaskForm({ task, existingTasks, existingTopics, action, onClose 
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
-      <dialog open className="w-full max-w-xl rounded-3xl border border-zinc-200 bg-white p-6 shadow-xl shadow-zinc-900/10">
-        <header className="mb-4 flex items-center justify-between">
+    <div className="fixed inset-0 z-[60] flex min-h-screen items-center justify-center bg-black/55 p-4">
+      <dialog open className="mx-auto w-full max-w-xl rounded-[2rem] border border-pink-200 bg-white p-6 shadow-[0_24px_70px_rgba(0,0,0,0.25)]">
+        <header className="mb-5 flex items-center justify-between gap-3">
           <div>
             <h2 className="text-xl font-semibold text-zinc-950">
               {task ? "Edit Task" : "New Task"}
             </h2>
             <p className="text-sm text-zinc-500">All fields are required.</p>
           </div>
-          <button type="button" onClick={onClose} className="rounded-full border border-zinc-200 px-3 py-1 text-sm text-zinc-600 hover:bg-zinc-100">
+          <button type="button" onClick={onClose} className="rounded-full border border-zinc-200 px-3 py-1 text-sm text-zinc-600 hover:bg-pink-50 hover:text-pink-700">
             Close
           </button>
         </header>
@@ -138,7 +138,7 @@ export function TaskForm({ task, existingTasks, existingTopics, action, onClose 
             onChange={(event) => setTitle(event.target.value)}
             placeholder="Task title"
             required
-            className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm outline-none focus:border-sky-500 focus:bg-white"
+            className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm outline-none focus:border-pink-400 focus:bg-white"
           />
 
           <textarea
@@ -148,7 +148,7 @@ export function TaskForm({ task, existingTasks, existingTopics, action, onClose 
             rows={3}
             placeholder="Description"
             required
-            className="w-full resize-none rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm outline-none focus:border-sky-500 focus:bg-white"
+            className="w-full resize-none rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm outline-none focus:border-pink-400 focus:bg-white"
           />
 
           <div className="grid gap-4 sm:grid-cols-2">
@@ -171,7 +171,7 @@ export function TaskForm({ task, existingTasks, existingTopics, action, onClose 
                     setDueDateValue(dueDateValue || today);
                   }
                 }}
-                className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm outline-none focus:border-sky-500 focus:bg-white"
+                className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm outline-none focus:border-pink-400 focus:bg-white"
               >
                 {dueDatePresets.map((preset) => (
                   <option key={preset.value} value={preset.value}>
@@ -185,7 +185,7 @@ export function TaskForm({ task, existingTasks, existingTopics, action, onClose 
                 value={dueDateValue}
                 onChange={(event) => setDueDateValue(event.target.value)}
                 required
-                className={dueDatePreset === "custom" ? "rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm outline-none focus:border-sky-500 focus:bg-white" : "hidden"}
+                className={dueDatePreset === "custom" ? "rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm outline-none focus:border-pink-400 focus:bg-white" : "hidden"}
               />
             </label>
 
@@ -198,7 +198,7 @@ export function TaskForm({ task, existingTasks, existingTopics, action, onClose 
                   onChange={(event) => setCustomTopicValue(event.target.value)}
                   placeholder="Work, Personal, University"
                   required
-                  className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm outline-none focus:border-sky-500 focus:bg-white"
+                  className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm outline-none focus:border-pink-400 focus:bg-white"
                 />
               ) : (
                 <select
@@ -214,7 +214,7 @@ export function TaskForm({ task, existingTasks, existingTopics, action, onClose 
                       setSelectedTopic(value);
                     }
                   }}
-                  className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm outline-none focus:border-sky-500 focus:bg-white"
+                  className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm outline-none focus:border-pink-400 focus:bg-white"
                 >
                   <option value="">Choose a topic</option>
                   {existingTopics.map((topic) => (
@@ -235,7 +235,7 @@ export function TaskForm({ task, existingTasks, existingTopics, action, onClose 
               value={status}
               onChange={(event) => setStatus(event.target.value as TaskStatus)}
               required
-              className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm outline-none focus:border-sky-500 focus:bg-white"
+              className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm outline-none focus:border-pink-400 focus:bg-white"
             >
               {statusOptions.map((statusOption) => (
                 <option key={statusOption} value={statusOption}>
@@ -246,10 +246,10 @@ export function TaskForm({ task, existingTasks, existingTopics, action, onClose 
           </label>
 
           <div className="mt-2 flex justify-end gap-3">
-            <button type="button" onClick={onClose} className="rounded-full border border-zinc-300 px-5 py-3 text-sm text-zinc-600 hover:bg-zinc-100">
+            <button type="button" onClick={onClose} className="rounded-full border border-zinc-300 px-5 py-3 text-sm text-zinc-600 hover:bg-pink-50 hover:text-pink-700">
               Cancel
             </button>
-            <button type="submit" disabled={isSubmitting} className="rounded-full bg-sky-600 px-5 py-3 text-sm font-semibold text-white hover:bg-sky-700 disabled:cursor-not-allowed disabled:opacity-60">
+            <button type="submit" disabled={isSubmitting} className="rounded-full bg-black px-5 py-3 text-sm font-semibold text-white hover:bg-pink-600 disabled:cursor-not-allowed disabled:opacity-60">
               {task ? "Save Task" : "Add Task"}
             </button>
           </div>
